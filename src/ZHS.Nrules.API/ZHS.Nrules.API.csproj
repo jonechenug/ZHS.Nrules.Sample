@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.1\ZHS.Nrules.API.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZHS.Nrules.Application\ZHS.Nrules.Application.csproj" />
+    <ProjectReference Include="..\ZHS.Nrules.Core\ZHS.Nrules.Core.csproj" />
+    <ProjectReference Include="..\ZHS.Nrules.Infrastructure\ZHS.Nrules.Infrastructure.csproj" />
+    <ProjectReference Include="..\ZHS.Nrules.RuleEngine\ZHS.Nrules.RuleEngine.csproj" />
+  </ItemGroup>
+
+</Project>

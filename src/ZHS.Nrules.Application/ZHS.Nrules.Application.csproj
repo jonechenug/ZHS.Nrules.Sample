@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZHS.Nrules.Core\ZHS.Nrules.Core.csproj" />
+    <ProjectReference Include="..\ZHS.Nrules.Infrastructure\ZHS.Nrules.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
