@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZHS.Nrules.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZHS.Nrules.RuleEngine", "src\ZHS.Nrules.RuleEngine\ZHS.Nrules.RuleEngine.csproj", "{29FD6050-3BDD-4E54-8DE2-C5DF859A4AE2}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D4C8E6ED-6414-4E0F-8B34-40094FC64405}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{29FD6050-3BDD-4E54-8DE2-C5DF859A4AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29FD6050-3BDD-4E54-8DE2-C5DF859A4AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29FD6050-3BDD-4E54-8DE2-C5DF859A4AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4C8E6ED-6414-4E0F-8B34-40094FC64405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C8E6ED-6414-4E0F-8B34-40094FC64405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C8E6ED-6414-4E0F-8B34-40094FC64405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C8E6ED-6414-4E0F-8B34-40094FC64405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

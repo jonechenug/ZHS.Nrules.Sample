@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  zhs.nrules.api:
+    image: ${DOCKER_REGISTRY}zhsnrulesapi
+    build:
+      context: .
+      dockerfile: src/ZHS.Nrules.API/Dockerfile
