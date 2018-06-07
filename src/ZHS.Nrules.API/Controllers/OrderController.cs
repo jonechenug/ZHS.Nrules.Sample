@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ZHS.Nrules.Application.Service;
 using ZHS.Nrules.API.Models.Output;
+using ZHS.Nrules.API.Rule;
 using ZHS.Nrules.Core.Models.Orders;
 
 namespace ZHS.Nrules.API.Controllers
@@ -43,6 +44,7 @@ namespace ZHS.Nrules.API.Controllers
             {
                 var tempOrder = JsonConvert.DeserializeObject<Order>(orderjson);
                 var ruleEngineService = HttpContext.RequestServices.GetService(typeof(RuleEngineService)) as RuleEngineService;
+                ruleEngineService.AddAssembly(typeof(OrderRemarkRule).Assembly);
                 ruleEngineService.ExecutePromotion(promotions, new List<object>
                 {
                     tempOrder

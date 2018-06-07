@@ -8,15 +8,19 @@ namespace ZHS.Nrules.RuleEngine
     {
         public IExecuterSession CreateSession(IExecuterRepository executerRepository)
         {
-            ISessionFactory factory = (executerRepository as ExecuterRepository).Compile();
-            return new NulesExecuterSession(factory.CreateSession());
+           return CreateSession(executerRepository,null);
         }
 
         public IExecuterSession CreateSession(IExecuterRepository executerRepository,Action<IExecuterSession> initializationAction)
         {
-            ISessionFactory factory =  (executerRepository as ExecuterRepository).Compile();
+            var repository = executerRepository as ExecuterRepository;
+            repository.LoadAssemblys();
+            ISessionFactory factory = repository.Compile();
             var session = new NulesExecuterSession(factory.CreateSession());
-            initializationAction(session);
+            if (initializationAction!=null)
+            {
+                initializationAction(session);
+            }
             return session;
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using ZHS.Nrules.Core.Models.Orders;
 using ZHS.Nrules.Core.Models.Promotion;
 using ZHS.Nrules.Infrastructure.RuleEngine;
@@ -17,6 +18,16 @@ namespace ZHS.Nrules.Application.Service
         {
             _iExecuterRepository = iExecuterRepository;
             _iExecuterContainer = iExecuterContainer;
+        }
+
+        public void AddAssembly(IEnumerable<Assembly> assemblys)
+        {
+            _iExecuterRepository.AddAssembly(assemblys);
+        }
+
+        public void AddAssembly(Assembly assembly)
+        {
+            _iExecuterRepository.AddAssembly(assembly);
         }
 
         public virtual List<RuleDefinition> BuildRuleDefinition(List<IBasePromotion> promotions)
@@ -45,9 +56,9 @@ namespace ZHS.Nrules.Application.Service
         /// </summary>
         /// <param name="promotions"></param>
         /// <param name="order"></param>
-        public virtual void ExecutePromotion(List<IBasePromotion> promotions,List<Object> facts)
+        public virtual void ExecutePromotion(List<IBasePromotion> promotions, List<Object> facts)
         {
-            ExecuteRuleDefinition(BuildRuleDefinition(promotions),facts);
+            ExecuteRuleDefinition(BuildRuleDefinition(promotions), facts);
         }
 
 
@@ -56,7 +67,7 @@ namespace ZHS.Nrules.Application.Service
         /// </summary>
         /// <param name="ruleDefinitions"></param>
         /// <param name="order"></param>
-        public virtual void ExecuteRuleDefinition(List<RuleDefinition>  ruleDefinitions,List<Object> facts)
+        public virtual void ExecuteRuleDefinition(List<RuleDefinition> ruleDefinitions, List<Object> facts)
         {
             foreach (var rule in ruleDefinitions)
             {

@@ -24,6 +24,8 @@ namespace ZHS.Nrules.Core.Models.Orders
 
         public string Id { get; set; }
 
+        public String Remark { get; set; }
+
 
         /// <summary>
         /// 获取原来订单的总价
@@ -116,6 +118,12 @@ namespace ZHS.Nrules.Core.Models.Orders
             }
         }
 
+
+        public void AddRemark(String remark)
+        {
+            Remark += remark;
+        }
+
         /// <summary>
         /// 平分减免到受影响的订单详情中
         /// </summary>
@@ -202,8 +210,5 @@ namespace ZHS.Nrules.Core.Models.Orders
                 }
             }
         }
-
-
-
     }
 }

@@ -2,19 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
+using NRules.Fluent;
 using NRules.RuleModel;
 using NRules.RuleModel.Builders;
 using ZHS.Nrules.Infrastructure.RuleEngine;
 
 namespace ZHS.Nrules.RuleEngine
 {
-    public class ExecuterRepository:IExecuterRepository, IRuleRepository
+    public class ExecuterRepository : IRuleRepository, IExecuterRepository
     {
-        private readonly IRuleSet _ruleSet = new RuleSet("MyRuleSet");
+        private readonly RuleRepository _internalRuleRepository;
+
+        private readonly IRuleSet _ruleSet;
+
+        private List<Assembly> _assemblys;
+
+        public ExecuterRepository()
+        {
+            _internalRuleRepository = new RuleRepository();
+            _ruleSet = new RuleSet("default");
+            _assemblys = new List<Assembly>();
+        }
 
         public IEnumerable<IRuleSet> GetRuleSets()
         {
-            return new[] { _ruleSet };
+            //合并
+            var sets = new List<IRuleSet>();
+            sets.Add(_ruleSet);
+            sets.AddRange(_internalRuleRepository.GetRuleSets());
+            return sets;
         }
 
         public void AddRule(RuleDefinition definition)
@@ -35,6 +52,22 @@ namespace ZHS.Nrules.RuleEngine
         }
 
 
+        public void AddAssembly(IEnumerable<Assembly> assemblys)
+        {
+            _assemblys.AddRange(assemblys);
+        }
+
+        public void AddAssembly(Assembly assembly)
+        {
+            _assemblys.Add(assembly);
+        }
+
+        internal void LoadAssemblys()
+        {
+            _internalRuleRepository.Load(x => x.From(_assemblys));
+        }
+
+
         PatternBuilder ParsePattern(RuleBuilder builder, LambdaExpression condition)
         {
             var parameter = condition.Parameters.FirstOrDefault();
@@ -52,7 +85,7 @@ namespace ZHS.Nrules.RuleEngine
 
         static dynamic GetObject(Type type)
         {
-            return Activator.CreateInstance(type);
+            return System.Activator.CreateInstance(type);
         }
     }
 }
