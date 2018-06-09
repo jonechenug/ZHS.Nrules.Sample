@@ -8,7 +8,12 @@ namespace ZHS.Nrules.Infrastructure.Repository
 {
     public interface IRepository<TEntity,Tkey > where TEntity  : IEntity<Tkey>
     {
+    }
+    public interface ICRUDRepository<TEntity,Tkey >:IRepository<TEntity,Tkey > where TEntity  : IEntity<Tkey>
+    {
         TEntity Insert(TEntity t);
+
+        TEntity InsertOrUpdate(TEntity t);
 
         void Delete(Tkey id);
 
@@ -19,6 +24,5 @@ namespace ZHS.Nrules.Infrastructure.Repository
         List<TEntity> FindList(Func<TEntity, bool> @where);
 
         IQueryable<TEntity> Queryable();
-
     }
 }

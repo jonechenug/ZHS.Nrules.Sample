@@ -11,10 +11,10 @@ using ZHS.Nrules.Core.Models.Orders;
 
 namespace ZHS.Nrules.API.Controllers
 {
-   
+
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class OrderController:Controller
+    public class OrderController : Controller
     {
         private readonly OrderService _orderService;
         private readonly PromotionService _promotionService;
@@ -26,6 +26,21 @@ namespace ZHS.Nrules.API.Controllers
             _orderService = orderService;
             _promotionService = promotionService;
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IEnumerable<Order> All()
+        {
+            return _orderService.QueryAble().ToList();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public Order InserOrUpdat(Order o)
+        {
+            return _orderService.InsertOrUpdate(o);
+        }
+
 
         /// <summary>
         /// 获取受促销引擎影响所有的返回结果

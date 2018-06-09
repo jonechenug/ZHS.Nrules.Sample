@@ -5,7 +5,7 @@ using ZHS.Nrules.Core.Models.Orders;
 
 namespace ZHS.Nrules.Infrastructure.Repository.Orders
 {
-    public class OrderRepository : BaseFakeRepository<Order, String>, IOrderRepository
+    public class OrderRepository : BaseFakeRepository<Order>, IOrderRepository
     {
         public OrderRepository()
         {

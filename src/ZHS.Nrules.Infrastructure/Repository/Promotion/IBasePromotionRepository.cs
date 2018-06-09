@@ -4,7 +4,7 @@ using ZHS.Nrules.Core.Models.Promotion;
 
 namespace ZHS.Nrules.Infrastructure.Repository
 {
-    public interface IBasePromotionRepository:IRepository<IBasePromotion,String >
+    public interface IBasePromotionRepository:ICRUDRepository<IBasePromotion,String >
     {
         
     }

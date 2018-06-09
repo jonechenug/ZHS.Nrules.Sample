@@ -6,7 +6,7 @@ using ZHS.Nrules.Infrastructure.Util;
 
 namespace ZHS.Nrules.API.Repository.Promotion
 {
-    public class PromotionRepository : BaseFakeRepository<IBasePromotion, String>, IBasePromotionRepository
+    public class PromotionRepository : BaseFakeRepository<IBasePromotion>, IBasePromotionRepository
     {
         public PromotionRepository()
         {

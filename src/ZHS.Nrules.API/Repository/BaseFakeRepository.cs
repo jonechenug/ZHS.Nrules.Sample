@@ -7,7 +7,7 @@ using ZHS.Nrules.Infrastructure.Repository;
 
 namespace ZHS.Nrules.API.Repository
 {
-    public class BaseFakeRepository<TEntity, Tkey> : List<TEntity>, IRepository<TEntity, Tkey> where TEntity : IEntity<Tkey>
+    public class BaseFakeRepository<TEntity> : List<TEntity>, ICRUDRepository<TEntity, String> where TEntity : IEntity<String>
     {
         public virtual TEntity Insert(TEntity t)
         {
@@ -15,19 +15,19 @@ namespace ZHS.Nrules.API.Repository
             return t;
         }
 
-        public virtual void Delete(Tkey id)
+        public virtual void Delete(String id)
         {
             this.Remove(Get(id));
         }
 
-        public virtual void Update(Tkey id, TEntity entity)
+        public virtual void Update(String id, TEntity entity)
         {
             entity.Id = id;
             this.Remove(Get(id));
             Insert(entity);
         }
 
-        public virtual TEntity Get(Tkey id)
+        public virtual TEntity Get(String id)
         {
             return this.FirstOrDefault(i => i.Id.Equals(id));
         }
@@ -40,6 +40,24 @@ namespace ZHS.Nrules.API.Repository
         public virtual IQueryable<TEntity> Queryable()
         {
             return this.AsQueryable();
+        }
+
+        public TEntity InsertOrUpdate(TEntity t)
+        {
+            if (String.IsNullOrWhiteSpace(t.Id))
+            {
+                t.Id = ZHS.Nrules.Infrastructure.Util.ObjectId.GenerateNewStringId();
+            }
+            else
+            {
+                var isExist=this.Count(i=>i.Id==t.Id)>0;
+                if(isExist){
+                    this.Update(t.Id,t);
+                    return t;
+                }
+            }
+            this.Insert(t);
+            return t;
         }
     }
 }

@@ -39,5 +39,15 @@ namespace ZHS.Nrules.Application.Service
             return result;
         }
 
+        public IQueryable<IBasePromotion> QueryAble()
+        {
+            return _promotionRepository.Queryable();
+        }
+
+        public IBasePromotion InsertOrUpdate(IBasePromotion p)
+        {
+            return _promotionRepository.InsertOrUpdate(p);
+        }
+
     }
 }

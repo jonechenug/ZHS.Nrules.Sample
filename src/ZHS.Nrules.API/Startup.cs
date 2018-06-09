@@ -41,8 +41,8 @@ namespace ZHS.Nrules.API
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
 
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IBasePromotionRepository, PromotionRepository>();
+            services.AddSingleton<IOrderRepository, OrderRepository>();
+            services.AddSingleton<IBasePromotionRepository, PromotionRepository>();
 
             services.AddTransient<IExecuterContainer, NulesExecuterContainer>();
             services.AddTransient<IExecuterRepository, ExecuterRepository>();
